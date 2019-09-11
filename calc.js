@@ -110,30 +110,28 @@ function backspace(input){
       var firstNum;
       var secNum;
     for (var i = 0; i < postfix.length; i++) {
-        if ((postfix[i] != "^") && (postfix[i] != "+") && (postfix[i] != "-") && (postfix[i] != "*") && (postfix[i] != "/") && (postfix[i] !== "") ) {
+	    if ((postfix[i] != "^") && (postfix[i] != "+") && (postfix[i] != "-") && (postfix[i] != "*") && (postfix[i] != "/") && (postfix[i] !== "") ) {
             postfixStack.push(postfix[i]);
-        }else if(postfix[i] === "^" || postfix[i] === "+" || postfix[i] === "-"|| postfix[i] === "*"|| postfix[i] === "/" || postfix === "cos") {
-          
-          if (postfix[i] === '+') {
+	    }
+	    else if (postfix[i] === '+') {
                 firstNum = postfixStack.pop();
                 secNum = postfixStack.pop();
                 result = parseFloat(secNum) + parseFloat (firstNum);
                 postfixStack .push(result);
             }
-            else if (postfix[i] === '*') {
+	    else if (postfix[i] === '*') {
                 firstNum = postfixStack.pop();
                 secNum = postfixStack
                 result = (secNum) * (firstNum);
                 postfixStack.push(result);
             }
-            else if (postfix[i] === '/') {
+	    else if (postfix[i] === '/') {
                 firstNum = postfixStack.pop();
                 secNum = postfixStack.pop();
                 result = ((secNum) / (firstNum));
                 postfixStack .push(result);
-        }
-
-            else if (postfix[i] === '-') {
+	    }
+	    else if (postfix[i] === '-') {
                 firstNum = postfixStack.pop();
                 secNum = postfixStack.pop();
                 result = (secNum) - (firstNum);
@@ -145,11 +143,11 @@ function backspace(input){
                 result = Math.pow((secNum),(firstNum));
                 postfixStack.push(result);
             }
-      } 
+      }
     
   }
 
-   var finalRes = postfixStack.pop();
+  var finalRes = postfixStack.pop();
   return finalRes;
 
 }	
