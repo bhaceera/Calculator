@@ -65,51 +65,51 @@ function backspace(input){
     var infixStack = new Array();
     var pfixString = "";
     var precedence = function(operator){
-   switch(operator){
-       case "^":
-           return 3;
-       case "+":
-       case "-":
-            return 1;
-       case "*":
-       case "/":
-            return 2;
-      default:
-            return 0;
-      }
-   } 
+	    switch(operator){
+		    case "^":
+			    return 3;
+		    case "+":
+		    case "-":
+			    return 1;
+		    case "*":
+		    case "/":
+			    return 2;
+		    default:
+			    return 0;
+	    }
+    } 
    for (var i=0; i<expression.length; i++){
-     var c = expression.charAt(i);
-   if(!isNaN(parseInt(c))){
-         pfixString += c;
-        if (i+1 >= expression.length || (isNaN(parseInt(expression.charAt(i+1))) && c !=="." )){
-                   pfixString += " ";
-              }
-        } else if(c==="+"||c==="-"||c==="*"||c==="/"||c==="^"){
-            while(c!= "^" && infixStack.length !== 0 && (precedence(c) <= precedence(infixStack[infixStack.length -1]))){
-                   pfixString += infixStack.pop();
-                   pfixString +=" ";
-              }
-           infixStack.push(c);
-         } 
-        
-    }
+	   var c = expression.charAt(i);
+	   if(!isNaN(parseInt(c))){
+		   pfixString += c;
+		   if (i+1 >= expression.length || (isNaN(parseInt(expression.charAt(i+1))) && c !=="." )){
+			   pfixString += " ";
+		   }
+	   }
+	   else if(c==="+"||c==="-"||c==="*"||c==="/"||c==="^"){
+		   while(c!= "^" && infixStack.length !== 0 && (precedence(c) <= precedence(infixStack[infixStack.length -1]))){
+			   pfixString += infixStack.pop();
+			   pfixString +=" ";
+		   }
+		   infixStack.push(c);
+	   } 
+   }
         
    while(infixStack.length !== 0){
-         pfixString +=infixStack.pop();
-         pfixString +=" ";
-   } this. getPostfix = function(){
-    return pfixString;
+	   pfixString +=infixStack.pop();
+	   pfixString +=" ";
    }
- }
-
- function equals(expression){
-      var postfix = expression.split(" ");
-      var postfixStack = new Array();
-      var result;
-      var firstNum;
-      var secNum;
-    for (var i = 0; i < postfix.length; i++) {
+	 this. getPostfix = function(){
+		 return pfixString;
+	 }
+	 
+function equals(expression){
+	var postfix = expression.split(" ");
+	var postfixStack = new Array();
+	var result;
+	var firstNum;
+	var secNum;
+	for (var i = 0; i < postfix.length; i++) {
 	    if ((postfix[i] != "^") && (postfix[i] != "+") && (postfix[i] != "-") && (postfix[i] != "*") && (postfix[i] != "/") && (postfix[i] !== "") ) {
             postfixStack.push(postfix[i]);
 	    }
@@ -146,9 +146,8 @@ function backspace(input){
       }
     
   }
-
-  var finalRes = postfixStack.pop();
-  return finalRes;
+	 var finalRes = postfixStack.pop();
+	 return finalRes;
 
 }	
 
